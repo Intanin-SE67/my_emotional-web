@@ -177,12 +177,12 @@ export default function Home() {
   // 3) Load ONNX model + classes
   async function loadModel() {
     const session = await ort.InferenceSession.create(
-      "/models/emotion_yolo11n_cls.onnx",
+      "/web_models/emotion_yolo11n_cls.onnx",
       { executionProviders: ["wasm"] }
     );
     sessionRef.current = session;
 
-    const clsRes = await fetch("/models/classes.json");
+    const clsRes = await fetch("/web_models/classes.json");
     if (!clsRes.ok) throw new Error("โหลด classes.json ไม่สำเร็จ");
     classesRef.current = await clsRes.json();
   }
